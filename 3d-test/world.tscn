@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://klsjks7n1tgc"]
+
+[ext_resource type="ArrayMesh" uid="uid://brx85dl4et4n4" path="res://medieval-tower.obj" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://i21c4fuhsk01" path="res://camera_rig.gd" id="1_tlwt5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
+
+[sub_resource type="Sky" id="Sky_tlwt5"]
+sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
+
+[sub_resource type="Environment" id="Environment_aqk2v"]
+background_mode = 2
+sky = SubResource("Sky_tlwt5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_f3sb7"]
+
+[node name="World" type="Node3D" unique_id=51452518]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2042752232]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1184165083]
+size = Vector2i(384, 216)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1580911198]
+environment = SubResource("Environment_aqk2v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1817505230]
+
+[node name="Camera Rig" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=20978006]
+transform = Transform3D(0.9981348, 0.03052427, -0.052869588, 0, 0.8660254, 0.5, 0.06104854, -0.4990674, 0.86441004, 0, 0, 0)
+script = ExtResource("1_tlwt5")
+
+[node name="InnerGimbal" type="Node3D" parent="SubViewportContainer/SubViewport/Camera Rig" unique_id=1668909006]
+transform = Transform3D(0.99813485, 3.7615986e-09, 0.061048552, 0.030524272, 0.86602545, -0.49906746, -0.052869596, 0.49999997, 0.86441016, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Camera Rig/InnerGimbal" unique_id=1693051766]
+transform = Transform3D(0.99813485, 0.030524269, -0.0528696, 3.718342e-09, 0.8660254, 0.5, 0.061048545, -0.49906734, 0.86441016, -1.3144603, 23, 21.49123)
+projection = 1
+size = 26.890612
+
+[node name="Meshes" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1567513394]
+
+[node name="MedievalTower" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Meshes" unique_id=1298373941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16276428, 0, -0.13405675)
+mesh = ExtResource("1_f3sb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Meshes" unique_id=36445940]
+transform = Transform3D(1000, 0, 0, 0, -4.371139e-05, 1000, 0, -1000, -4.371139e-05, -0.054893494, -0.0778141, 0.04630661)
+mesh = SubResource("QuadMesh_f3sb7")
