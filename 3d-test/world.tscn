@@ -2,6 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://brx85dl4et4n4" path="res://medieval-tower.obj" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://i21c4fuhsk01" path="res://camera_rig.gd" id="1_tlwt5"]
+[ext_resource type="Shader" uid="uid://7hvy2t66akg3" path="res://edge_detection.gdshader" id="2_tlwt5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 
@@ -11,6 +12,19 @@ sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
 [sub_resource type="Environment" id="Environment_aqk2v"]
 background_mode = 2
 sky = SubResource("Sky_tlwt5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_aqk2v"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_036b0"]
+render_priority = 0
+shader = ExtResource("2_tlwt5")
+shader_parameter/lightIntensity = 1.25
+shader_parameter/lineAlpha = 0.7
+shader_parameter/useLighting = true
+shader_parameter/lineHighlight = 0.2
+shader_parameter/lineShadow = 0.55
 
 [sub_resource type="QuadMesh" id="QuadMesh_f3sb7"]
 
@@ -45,6 +59,12 @@ transform = Transform3D(0.99813485, 3.7615986e-09, 0.061048552, 0.030524272, 0.8
 transform = Transform3D(0.99813485, 0.030524269, -0.0528696, 3.718342e-09, 0.8660254, 0.5, 0.061048545, -0.49906734, 0.86441016, -1.3144603, 23, 21.49123)
 projection = 1
 size = 26.890612
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera Rig/InnerGimbal/Camera3D" unique_id=1647221902]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.016258836, -0.13291454, 0.23021507)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_aqk2v")
+surface_material_override/0 = SubResource("ShaderMaterial_036b0")
 
 [node name="Meshes" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1567513394]
 
